@@ -6,5 +6,6 @@ public class Test {
         Car car = new Car(2);
         car.comut();
         car.makeCarSound();
+        
     }
 }

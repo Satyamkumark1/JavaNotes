@@ -1,11 +1,13 @@
 package com.Abstraction_Interfeces.Abstraction;
 // By using abstract key word in parent class know no one can make its object
-public abstract   class Vehicle{
+public abstract   class Vehicle implements  Transport{
     private  int noOfTires;
 
     public int getNoOfTires() {
         return noOfTires;
     }
+
+
 
     public void setNoOfTires(int noOfTires) {
         this.noOfTires = noOfTires;
@@ -17,6 +19,9 @@ public abstract   class Vehicle{
     public  void comut() {
         System.out.println("Starting..........");
     }
+
+    public abstract void getsetGo();
+
     public  abstract  void  makeCarSound();
 
 }

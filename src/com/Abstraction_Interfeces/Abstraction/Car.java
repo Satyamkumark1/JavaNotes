@@ -7,11 +7,20 @@ public class Car extends Vehicle{
     }
 
     @Override
+    public void getsetGo() {
+        System.out.println("sasa");
+    }
+
+
+    @Override
     public void makeCarSound() {
         System.out.println("brurrururururuurururr");
 
     }
 
 
+    @Override
+    public void getSetGo() {
 
+    }
 }
