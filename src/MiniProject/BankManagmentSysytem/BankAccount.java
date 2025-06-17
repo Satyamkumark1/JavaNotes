@@ -1,60 +1,97 @@
 package MiniProject.BankManagmentSysytem;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class BankAccount {
-    // BankAccount class to represent a bank account
     private final String accountHolderName;
     private final long mobileNumber;
     private double balance;
     private final int id;
     private final int pin;
+    private final List<String> transactionHistory = new ArrayList<>();
+    private int failedLoginAttempts = 0;
+    private boolean locked = false;
 
-    // Constructor to initialize the bank account details
     public BankAccount(String accountHolderName, long mobileNumber, double balance, int id, int pin) {
         this.accountHolderName = accountHolderName;
         this.mobileNumber = mobileNumber;
         this.balance = balance;
         this.id = id;
         this.pin = pin;
+        transactionHistory.add(new Date() + ": Account created with balance " + balance);
     }
 
-    // Getters for the bank account details
     public String getAccountHolderName() {
         return accountHolderName;
     }
 
-    // Method to get the account ID
     public int getPin() {
         return pin;
     }
-    // Method to get the account ID
-    public  int checkPin() {
-        return pin;
-    }
-    // Method to get the account ID
-    public long getMobileNumber() { return mobileNumber; }
 
-    // Method to get the account ID
+    public long getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void incrementFailedLoginAttempts() {
+        failedLoginAttempts++;
+        if (failedLoginAttempts >= 3) {
+            locked = true;
+        }
+    }
+
+    public void resetFailedLoginAttempts() {
+        failedLoginAttempts = 0;
+    }
+
     public void depositMoney(double money) {
-        if (money < 100) {
-            System.out.println("Enter a minimum amount of 100 rupees.");
-            return;
+        try {
+            if (money <= 0) {
+                System.out.println("Deposit amount must be positive.");
+                return;
+            }
+            balance += money;
+            String entry = new Date() + ": Deposited " + money + ", Balance: " + balance;
+            transactionHistory.add(entry);
+            System.out.println("You have successfully deposited: " + money +
+                    "\nYour current balance is: " + balance);
+        } catch (Exception e) {
+            System.out.println("An error occurred during deposit: " + e.getMessage());
         }
-        balance += money;
-        System.out.println("You have successfully deposited " + money +
-                "\nYour current balance is: " + balance);
     }
 
-    // Method to withdraw money from the account
     public void withdrawMoney(double money) {
-        if (money > balance) {
-            System.out.println("Insufficient balance.");
-            return;
+        try {
+            if (money <= 0) {
+                System.out.println("Withdrawal amount must be positive.");
+                return;
+            }
+            if (money > balance) {
+                System.out.println("Insufficient balance.");
+                return;
+            }
+            balance -= money;
+            String entry = new Date() + ": Withdrew " + money + ", Balance: " + balance;
+            transactionHistory.add(entry);
+            System.out.println("You have successfully withdrawn: " + money +
+                    "\nYour current balance is: " + balance);
+        } catch (Exception e) {
+            System.out.println("An error occurred during withdrawal: " + e.getMessage());
         }
-        balance -= money;
-        System.out.println("You have successfully withdrawn: " + money +
-                "\nYour current balance is: " + balance);
     }
-    // Method to get the current balance
+
+    public void printTransactionHistory() {
+        System.out.println("Transaction History for " + accountHolderName + ":");
+        for (String entry : transactionHistory) {
+            System.out.println(entry);
+        }
+    }
 
     @Override
     public String toString() {
@@ -63,6 +100,7 @@ public class BankAccount {
                 ", mobileNumber=" + mobileNumber +
                 ", balance=" + balance +
                 ", id=" + id +
+                ", locked=" + locked +
                 '}';
     }
 }

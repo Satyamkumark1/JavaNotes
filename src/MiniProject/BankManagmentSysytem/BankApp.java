@@ -5,90 +5,51 @@ import java.util.Scanner;
 public class BankApp {
     public static void main(String[] args) {
         Bank bank = new Bank();
-        // Create a default account for testing purposes
-        bank.createAccount("Default User", 1234567890, 0.0, 1234); // Create a default account
-        Scanner scanner = new Scanner(System.in); // Scanner for user input
+        bank.createAccount("Default User", 1234567890L, 0.0, 1234);
+        Scanner scanner = new Scanner(System.in);
 
+        BankAccount loggedInAccount = null;
 
-        BankAccount loggedInAccount = null; // Variable to store the currently logged-in account
-
-
-    // Main loop to display the menu and handle user input
         while (true) {
-            System.out.println("Welcome to your bank");
+            System.out.println("\nWelcome to your bank");
             System.out.println("***************************");
-            System.out.println("Select a option:");
-            System.out.println("***************************");
+            System.out.println("Select an option:");
             System.out.println("1.  Create a Bank account");
-            System.out.println("2. Deposit Money");
-            System.out.println("3. Withdraw Money");
-            System.out.println("4. View your bank details");
-            System.out.println("5. Find your bank Details");
-            System.out.println("6. Login to your account");
-
+            System.out.println("2.  Deposit Money");
+            System.out.println("3.  Withdraw Money");
+            System.out.println("4.  View all bank accounts");
+            System.out.println("5.  Find your bank Details");
+            System.out.println("6.  Login to your account");
+            System.out.println("7.  Log Out");
+            System.out.println("8.  View Transaction History");
+            System.out.println("9.  Delete My Account");
+            System.out.println("0.  Exit");
             System.out.println("***************************");
-            System.out.println("Select An option");
+            System.out.print("Select an option: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> { // Create a new bank account
-                    System.out.println("Enter your Name");
-                    String name = scanner.nextLine();
-                    System.out.println("Enter your Mobile Number:");
-                    long number = scanner.nextLong();
-                    System.out.println("Deposit some amount");
-                    double money = scanner.nextDouble();
-                    System.out.println("Set Your PIN it must be a 4 digit pin");
-                    int pin = scanner.nextInt();
-                    bank.createAccount(name, number, money, pin);
+                case 1 -> bank.handleCreateAccount(scanner);
+                case 2 -> bank.handleDeposit(loggedInAccount, scanner);
+                case 3 -> bank.handleWithdrawl(loggedInAccount, scanner);
+                case 4 -> bank.showBankDetails();
+                case 5 -> bank.handleFindBankAccountByPinAndNumber(scanner);
+                case 6 -> loggedInAccount = bank.handleLoginToExistingBankAccount(scanner);
+                case 7 -> {
+                    loggedInAccount = null;
+                    System.out.println("Logged out successfully.");
                 }
-                case 2 -> { // Deposit money into the logged-in account
-                    if (loggedInAccount != null) {
-                        System.out.println("Enter the amount you want to deposit:");
-                        double amount = scanner.nextDouble();
-                        loggedInAccount.depositMoney(amount);
-                    } else {
-                        System.out.println("Please login first.");
-                    }
+                case 8 -> bank.handleTransactionHistory(loggedInAccount);
+                case 9 -> {
+                    bank.handleDeleteAccount(loggedInAccount, scanner);
+                    loggedInAccount = null;
                 }
-
-                case 3 -> { // Withdraw money from the logged-in account
-                    if (loggedInAccount != null) {
-                        System.out.println("Enter the amount you want to withdraw:");
-                        double amount = scanner.nextDouble();
-                        loggedInAccount.withdrawMoney(amount);
-                    } else {
-                        System.out.println("Please login first.");
-                    }
+                case 0 -> {
+                    System.out.println("Thank you for using the Bank Management System. Goodbye!");
+                    System.exit(0);
                 }
-
-                case 4 -> bank.showBankDetails(); // View all bank account details
-                case 5 ->{ // Find a bank account by mobile number and PIN
-
-                    System.out.println("Enter your mobile number");
-                    long number = scanner.nextLong();
-                    System.out.println("Enter the Pin");
-                    int pin = scanner.nextInt();
-                    System.out.println( bank.findAccount(number,pin));
-                }
-                case 6 -> { // Login to an existing bank account
-                    System.out.println("Enter your mobile number:");
-                    long mobile = scanner.nextLong();
-                    System.out.println("Enter your PIN:");
-                    int pin = scanner.nextInt();
-                    scanner.nextLine(); // consume leftover newline
-                    BankAccount account = bank.findAccount(mobile, pin);
-                    if (account != null) {
-                        loggedInAccount = account;
-                        System.out.println("Login successful! Welcome, " + loggedInAccount.getAccountHolderName());
-                    }
-                }
-                default -> {    // Handle invalid option
-                    System.out.println("Enter a vaild option");
-                }
-
-
+                default -> System.out.println("Enter a valid option");
             }
         }
     }
