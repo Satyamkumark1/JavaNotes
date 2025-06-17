@@ -176,4 +176,14 @@ public class Bank {
         }
         return null;
     }
+
+    // Additional method for searching by account ID (advanced feature)
+    public BankAccount findAccountById(int accountId) {
+        for (BankAccount bankAccount : bankAccountList) {
+            if (bankAccount.getId() == accountId) {
+                return bankAccount;
+            }
+        }
+        return null;
+    }
 }

@@ -1,0 +1,13 @@
+Step 3: LibraryApp Class (Main)
+This class will:
+• Take user input using Scanner
+• Show a menu using a while (true) loop
+• Ask for input like:
+markdown
+• Copy code
+1. Add Book
+2. View All Books
+3. Borrow Book
+4. Return Book
+5. Exit
+Each option will call the correct method from the Library class.

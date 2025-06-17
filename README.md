@@ -1,105 +1,125 @@
-# Java Bank Management System
 
-This is a console-based Bank Management System implemented in Java. It allows users to create bank accounts, deposit and withdraw money, view account details, securely log in and out, view transaction history, and delete accounts. The system demonstrates advanced OOP concepts and includes security features.
+# Java Mini Projects Collection
+
+This repository contains several Java mini-projects, each demonstrating core Object-Oriented Programming (OOP) concepts and practical application development. The projects included are:
+
+- **Bank Management System**
+- **ATM Simulation**
+- **Library Management System**
+- **Todo List Application**
+
+---
+
+## Table of Contents
+
+- [Bank Management System](#bank-management-system)
+- [ATM Simulation](#atm-simulation)
+- [Library Management System](#library-management-system)
+- [Todo List Application](#todo-list-application)
+- [OOP Concepts Used](#oop-concepts-used)
+- [How to Run](#how-to-run)
+- [Notes](#notes)
+- [Authors](#authors)
+
+---
+
+## Bank Management System
+
+A console-based system for managing bank accounts. Features include account creation, login/logout, deposit, withdrawal, transaction history, account deletion, and account locking after failed login attempts.
+
+**Key Features:**
+- Create, view, and delete bank accounts
+- Secure login with PIN and account locking after 3 failed attempts
+- Deposit and withdraw money
+- View transaction history
+- Input validation for mobile numbers and PINs
+
+**How to Run:**
+```sh
+javac src/MiniProject/BankManagmentSysytem/*.java
+java -cp src MiniProject.BankManagmentSysytem.BankApp
+```
+
+---
+
+## ATM Simulation
+
+A simple ATM simulation that allows users to check balance, deposit, and withdraw money after PIN verification.
+
+**Key Features:**
+- PIN-based authentication
+- Balance inquiry, deposit, and withdrawal
+- Input validation and user-friendly prompts
+
+**How to Run:**
+```sh
+javac src/MiniProject/Atm/*.java
+java -cp src MiniProject.Atm.AtmStart
+```
+
+---
+
+## Library Management System
+
+A console-based library system to manage books, allowing users to add, borrow, return, and view books.
+
+**Key Features:**
+- Add new books
+- Borrow and return books
+- View all books and their status
+
+**How to Run:**
+```sh
+javac src/MiniProject/LibrabaryManagment/*.java
+java -cp src MiniProject.LibrabaryManagment.LibraryApp
+```
+
+---
+
+## Todo List Application
+
+A simple task manager to add, complete, view, and delete tasks.
+
+**Key Features:**
+- Add new tasks with unique IDs
+- Mark tasks as complete
+- View all tasks
+- Delete tasks by ID
+
+**How to Use:**
+Integrate with your own main class or extend as needed.
 
 ---
 
 ## OOP Concepts Used
 
-This project demonstrates several core Object-Oriented Programming (OOP) concepts:
+All projects demonstrate the following OOP principles:
 
-- **Encapsulation**:  
-  The `BankAccount` and `Bank` classes encapsulate their data and provide public methods for interaction, hiding internal details from the user.
-
-- **Abstraction**:  
-  The system exposes only necessary operations (like deposit, withdraw, create account) to the user, abstracting away the implementation details.
-
-- **Inheritance**:  
-  While this project does not use inheritance directly, it is structured in a way that could be extended using inheritance (e.g., different types of accounts).
-
-- **Polymorphism**:  
-  The code is designed to be extensible for polymorphism (e.g., if you add subclasses for different account types), though it is not explicitly demonstrated in the current implementation.
-
-- **Class and Object Usage**:  
-  The system uses classes (`Bank`, `BankAccount`) to model real-world entities, and creates objects to represent individual accounts and the bank itself.
+- **Encapsulation:** Data and methods are bundled within classes, with access controlled via private/protected/public modifiers.
+- **Abstraction:** Only essential operations are exposed to the user, hiding implementation details.
+- **Inheritance:** The code is structured for extensibility, allowing for future subclassing (e.g., different account or book types).
+- **Polymorphism:** The design supports polymorphism, though not all projects use it explicitly.
+- **Class and Object Usage:** Real-world entities are modeled as classes and instantiated as objects.
 
 ---
 
-## Features
+## How to Run
 
-- **Create Account**: Users can create a new bank account by providing their name, a 10-digit mobile number, an initial deposit, and a 4-digit PIN.
-- **Login**: Users can log in to their account using their mobile number and PIN. After 3 failed login attempts, the account is locked for security.
-- **Deposit Money**: Logged-in users can deposit money into their account.
-- **Withdraw Money**: Logged-in users can withdraw money from their account, provided they have sufficient balance.
-- **View All Accounts**: View details of all accounts in the system (for demonstration purposes).
-- **Find Account**: Search for an account by providing the mobile number and PIN.
-- **Transaction History**: View a detailed transaction history for the logged-in account.
-- **Delete Account**: Logged-in users can delete their own account after confirmation.
-- **Logout**: Securely log out of the current session.
-- **Account Locking**: Accounts are locked after 3 failed login attempts to enhance security.
-- **Input Validation**: The system checks for valid mobile numbers (10 digits) and PINs (4 digits).
-
----
-
-## How It Works
-
-1. **Startup**: The application starts by creating a default account for testing.
-2. **Menu**: The user is presented with a menu to select actions (create account, deposit, withdraw, etc.).
-3. **Account Management**: All account operations are managed through the `Bank` class, which maintains a list of `BankAccount` objects.
-4. **Security**: Each account is protected by a 4-digit PIN. Users must log in to perform sensitive operations. Accounts are locked after 3 failed login attempts.
-5. **Transaction History**: All deposits and withdrawals are recorded with timestamps and can be viewed by the account holder.
-6. **Account Deletion**: Users can delete their account after confirmation.
-
----
-
-## Usage
-
-1. **Compile the code**:
-    ```sh
-    javac src/MiniProject/BankManagmentSysytem/*.java
-    ```
-
-2. **Run the application**:
-    ```sh
-    java -cp src MiniProject.BankManagmentSysytem.BankApp
-    ```
-
-3. **Follow the on-screen menu** to create accounts, log in, deposit, withdraw, view account details, view transaction history, and delete accounts.
-
----
-
-## Example Menu
-
-```
-Welcome to your bank
-***************************
-Select an option:
-1.  Create a Bank account
-2.  Deposit Money
-3.  Withdraw Money
-4.  View all bank accounts
-5.  Find your bank Details
-6.  Login to your account
-7.  Log Out
-8.  View Transaction History
-9.  Delete My Account
-0.  Exit
-***************************
-Select an option:
-```
+1. **Compile the code** for the desired project as shown above.
+2. **Run the main class** for the project you want to use.
+3. **Follow the on-screen instructions** in the console.
 
 ---
 
 ## Notes
 
-- Only one user can be logged in at a time.
-- All data is stored in memory; exiting the application will erase all accounts.
-- For demonstration, a default account is created at startup with mobile number `1234567890` and PIN `1234`.
-- Accounts are locked after 3 failed login attempts for security.
+- All data is stored in memory; exiting the application will erase all records.
+- Each project is self-contained and demonstrates clean, maintainable Java code.
+- For demonstration, some projects create default data at startup.
 
 ---
 
 ## Authors
 
-- Developed as a mini-project for learning Java OOP and console applications.
+Developed as a collection of mini-projects for learning and demonstrating Java OOP and console application development.
 

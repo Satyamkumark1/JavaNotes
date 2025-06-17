@@ -26,8 +26,14 @@ public class BankApp {
             System.out.println("0.  Exit");
             System.out.println("***************************");
             System.out.print("Select an option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            String input = scanner.nextLine();
+            int choice;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+                continue;
+            }
 
             switch (choice) {
                 case 1 -> bank.handleCreateAccount(scanner);

@@ -39,6 +39,10 @@ public class BankAccount {
         return locked;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void incrementFailedLoginAttempts() {
         failedLoginAttempts++;
         if (failedLoginAttempts >= 3) {
