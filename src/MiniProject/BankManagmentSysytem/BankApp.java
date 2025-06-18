@@ -2,14 +2,21 @@ package MiniProject.BankManagmentSysytem;
 
 import java.util.Scanner;
 
+/**
+ * Main application class for the Bank Management System.
+ * Handles user interaction and delegates actions to the Bank class.
+ */
 public class BankApp {
     public static void main(String[] args) {
         Bank bank = new Bank();
+        // Create a default account for demonstration
         bank.createAccount("Default User", 1234567890L, 0.0, 1234);
         Scanner scanner = new Scanner(System.in);
 
+        // Holds the currently logged-in account
         BankAccount loggedInAccount = null;
 
+        // Main loop for user interaction
         while (true) {
             System.out.println("\nWelcome to your bank");
             System.out.println("***************************");
@@ -35,6 +42,7 @@ public class BankApp {
                 continue;
             }
 
+            // Handle user choice
             switch (choice) {
                 case 1 -> bank.handleCreateAccount(scanner);
                 case 2 -> bank.handleDeposit(loggedInAccount, scanner);

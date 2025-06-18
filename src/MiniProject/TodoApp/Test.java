@@ -2,6 +2,9 @@ package MiniProject.TodoApp;
 
 import java.util.Scanner;
 
+/**
+ * Test class provides a simple console interface for the Todo application.
+ */
 public class Test {
     public static void main(String[] args) {
         // Initialize the application
@@ -9,7 +12,7 @@ public class Test {
         // Create a Scanner object for user input
         Scanner scanner = new Scanner(System.in);
 
-        // Adding some initial tasks to the application
+        // Main loop for user interaction
         while (true) {
             System.out.println("\nWelcome to Task Manager");
             System.out.println("1. Add a Task");
@@ -18,10 +21,11 @@ public class Test {
             System.out.println("4. Delete a Task");
             System.out.println("5. Exit");
             System.out.print("Select an option: ");
-             // Read user choice
+            // Read user choice
             int choice = scanner.nextInt();
             scanner.nextLine(); // clear the newline
-                // Handle user choice
+
+            // Handle user choice
             switch (choice) {
                 // Case 1: Add a new task
                 case 1 -> {

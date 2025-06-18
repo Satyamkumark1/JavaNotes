@@ -4,10 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Bank class manages a list of bank accounts and provides
+ * methods for account creation, login, deposit, withdrawal, and more.
+ */
 public class Bank {
+    // Counter for unique account IDs
     private int id;
+    // List to store all bank accounts
     private final List<BankAccount> bankAccountList = new ArrayList<>();
 
+    /**
+     * Handles the process of creating a new bank account via user input.
+     */
     public void handleCreateAccount(Scanner scanner) {
         System.out.println("Enter your Name:");
         String name = scanner.nextLine();
@@ -25,6 +34,9 @@ public class Bank {
         createAccount(name, number, money, pin);
     }
 
+    /**
+     * Creates a new bank account after validating input.
+     */
     public void createAccount(String accountHolderName, long mobileNumber, double balance, int pin) {
         for (BankAccount acc : bankAccountList) {
             if (acc.getMobileNumber() == mobileNumber) {
@@ -47,6 +59,9 @@ public class Bank {
         System.out.println(bankAccount);
     }
 
+    /**
+     * Displays all bank accounts.
+     */
     public void showBankDetails() {
         if (bankAccountList.isEmpty()) {
             System.out.println("No accounts found.");
@@ -57,6 +72,9 @@ public class Bank {
         }
     }
 
+    /**
+     * Handles deposit for the logged-in account.
+     */
     public void handleDeposit(BankAccount account, Scanner scanner) {
         if (account != null && !account.isLocked()) {
             System.out.println("Enter the amount you want to deposit:");
@@ -70,6 +88,9 @@ public class Bank {
         }
     }
 
+    /**
+     * Handles withdrawal for the logged-in account.
+     */
     public void handleWithdrawl(BankAccount account, Scanner scanner) {
         if (account != null && !account.isLocked()) {
             System.out.println("Enter the amount you want to withdraw");
@@ -83,6 +104,9 @@ public class Bank {
         }
     }
 
+    /**
+     * Displays transaction history for the logged-in account.
+     */
     public void handleTransactionHistory(BankAccount account) {
         if (account != null) {
             account.printTransactionHistory();
@@ -91,6 +115,9 @@ public class Bank {
         }
     }
 
+    /**
+     * Handles account deletion for the logged-in user.
+     */
     public void handleDeleteAccount(BankAccount account, Scanner scanner) {
         if (account == null) {
             System.out.println("Please login first.");
@@ -106,6 +133,9 @@ public class Bank {
         }
     }
 
+    /**
+     * Finds and displays an account by mobile number and PIN.
+     */
     public void handleFindBankAccountByPinAndNumber(Scanner scanner) {
         System.out.println("Enter your mobile number");
         long number = scanner.nextLong();
@@ -120,6 +150,9 @@ public class Bank {
         }
     }
 
+    /**
+     * Handles login to an existing bank account.
+     */
     public BankAccount handleLoginToExistingBankAccount(Scanner scanner) {
         System.out.println("Enter your mobile number:");
         long mobile = scanner.nextLong();
@@ -151,14 +184,19 @@ public class Bank {
         }
     }
 
+    // Validates if the mobile number is exactly 10 digits
     private boolean isValidMobile(long mobile) {
         return String.valueOf(mobile).length() == 10;
     }
 
+    // Validates if the PIN is exactly 4 digits
     private boolean isValidPin(int pin) {
         return String.valueOf(pin).length() == 4;
     }
 
+    /**
+     * Finds an account by mobile number and PIN.
+     */
     public BankAccount findAccount(long mobileNumber, int pin) {
         for (BankAccount bankAccount : bankAccountList) {
             if (bankAccount.getMobileNumber() == mobileNumber && bankAccount.getPin() == pin) {
@@ -168,6 +206,9 @@ public class Bank {
         return null;
     }
 
+    /**
+     * Finds an account by mobile number.
+     */
     public BankAccount findAccountByMobile(long mobileNumber) {
         for (BankAccount bankAccount : bankAccountList) {
             if (bankAccount.getMobileNumber() == mobileNumber) {
@@ -177,7 +218,9 @@ public class Bank {
         return null;
     }
 
-    // Additional method for searching by account ID (advanced feature)
+    /**
+     * Finds an account by account ID.
+     */
     public BankAccount findAccountById(int accountId) {
         for (BankAccount bankAccount : bankAccountList) {
             if (bankAccount.getId() == accountId) {
