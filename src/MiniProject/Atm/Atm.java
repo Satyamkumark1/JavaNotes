@@ -12,6 +12,10 @@ public class Atm {
         return atmPin == enteredPin;
     }
 
+
+
+
+    
     public void showMenu() {
         System.out.println("Welcome to the ATM:");
         System.out.println("1. Check the Balance");
