@@ -11,5 +11,6 @@ public class SecondTask extends Thread{
         }
         // Print the name of the current thread and indicate task completion
         System.out.printf(" %s* task complete",Thread.currentThread().getName());
+
     }
 }
